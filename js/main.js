@@ -1,6 +1,12 @@
 // Check for worker
 if (window.Worker) {
-  let myWorker = new Worker('./js/worker.js');
+  // Create worker
+  var myWorker = new Worker('js/worker.js');
 
+  // Send message to worker thread
   myWorker.postMessage('Hello from the main thread.');
+  // Receive message from worker thread
+  myWorker.onmessage = function(e) {
+    console.log(e.data);
+  };
 }
